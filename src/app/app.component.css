@@ -1,0 +1,49 @@
+mat-card .example-card {
+  height: 100%;
+  margin: 2px;
+}
+.example-card {
+  width: 350px;
+  display: inline-block;
+  max-block-size: 200px;
+  padding: 10px;
+}
+[class^="fa-"],
+[class*=" fa-"] {
+  display: inline-block;
+  width: 100%;
+}
+mat-card-header i {
+  text-align: center;
+}
+
+
+.Published {
+  border-top: 5px solid #20c997;
+}
+.Expired {
+  border-top: 5px solid grey;
+}
+.Closed {
+  border-top: 5px solid grey;
+}
+.ClosedBorder {
+  border: 2px solid grey;
+}
+.selected-closed {
+  border: 3px solid grey;
+  border-top: 5px solid gray;
+}
+.selected-published {
+  border: 3px solid #20c997;
+  border-top: 5px solid #20c997;
+}
+.selected-expired {
+  border: 3px solid grey;
+  border-top: 5px solid gray;
+}
+.material-icons{
+  font-size: 50px;
+  height: 50px;
+  width: 50px;
+}
