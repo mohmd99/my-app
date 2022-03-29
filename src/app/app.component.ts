@@ -1,6 +1,6 @@
 import { Isurvey } from './serveys';
 import { JsonpClientBackend } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {TestService} from './test.service'
 
@@ -16,15 +16,14 @@ constructor(public TestService:TestService){
 
 }
 Surveys:any
+
 ngOnInit(): void {
   this.TestService.getServey().subscribe( data =>this.Surveys=data);
-
+  
   }
-
   selectedSurveys?: Isurvey;
-  onSelect(servey: Isurvey): void {
-    this.selectedSurveys = servey;
-  }
+
+
 }
 
 

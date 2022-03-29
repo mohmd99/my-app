@@ -1,0 +1,86 @@
+<div *ngIf="selectedSurveys">
+  {{ selectedSurveys }}
+  {{ selectedSurveys.SurveyNameEn }}
+</div>
+<mat-card
+  [class.selected-closed]="
+    servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Closed'
+  "
+  [class.selected-published]="
+    servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Published'
+  "
+  [class.selected-expired]="
+    servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Expired'
+  "
+  (click)="onSelect(servey)"
+  class="example-card col-4"
+  style="text-align: center"
+  [ngClass]="{
+    Published: servey.SURVEY_STATUS_EN === 'Published',
+    Expired: servey.SURVEY_STATUS_EN === 'Expired',
+    Closed: servey.SURVEY_STATUS_EN === 'Closed'
+  }"
+>
+  <span
+    style="color: grey"
+    class="material-icons"
+    *ngIf="servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Closed'"
+  >
+    lock
+  </span>
+  <span
+    style="color: grey"
+    class="material-icons"
+    *ngIf="
+      servey.SURVEY_STATUS_EN === 'Closed' && !(servey === selectedSurveys)
+    "
+  >
+    lock_open
+  </span>
+  <span
+    style="color: #20c997"
+    class="material-icons"
+    *ngIf="
+      servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Published'
+    "
+  >
+    check_circle
+  </span>
+  <span
+    style="color: #20c997"
+    class="material-icons"
+    *ngIf="
+      servey.SURVEY_STATUS_EN === 'Published' && !(servey === selectedSurveys)
+    "
+  >
+    check
+  </span>
+  <span
+    style="color: grey"
+    class="material-icons"
+    *ngIf="servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Expired'"
+  >
+    watch_later
+  </span>
+  <span
+    style="color: grey"
+    class="material-icons"
+    *ngIf="
+      servey.SURVEY_STATUS_EN === 'Expired' && !(servey === selectedSurveys)
+    "
+    >alarm
+  </span>
+
+  <mat-card-content> {{ servey.SurveyNameEn }} </mat-card-content>
+  <mat-divider inset></mat-divider>
+  <mat-card-actions>
+    <mat-select placeholder="Select Period" value="1">
+      <mat-option value="">Select Period</mat-option>
+      <mat-option *ngFor="let i of x" value="1">
+        {{ i["START_DATE"] | date: "shortDate" }} -
+        {{ i["END_DATE"] | date: "shortDate" }}
+      </mat-option>
+    </mat-select>
+  </mat-card-actions>
+  <mat-card-footer> </mat-card-footer>
+</mat-card>

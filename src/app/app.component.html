@@ -1,223 +1,46 @@
 <mat-card>
   <mat-tab-group animationDuration="0ms">
+    <button mat-raised-button color="primary" [disabled]="!selectedSurveys">
+      Go To Dashboard
+    </button>
     <mat-tab label="Published">
-      <div *ngFor="let servey of Surveys" class="col-4">
-        <div class="container example-card col-3" style="padding: 30px"></div>
-        <mat-card
-          [class.selected-published]="servey === selectedSurveys"
-          (click)="onSelect(servey)"
-          class="example-card col-4"
-          style="text-align: center"
+      <div *ngFor="let servey of this.Surveys" class="col-4">
+        <div
+          class="container example-card col-3"
+          style="padding: 30px"
           *ngIf="servey.SURVEY_STATUS_EN === 'Published'"
-          [ngClass]="{
-            Published: servey.SURVEY_STATUS_EN === 'Published',
-            Expired: servey.SURVEY_STATUS_EN === 'Expired',
-            Closed: servey.SURVEY_STATUS_EN === 'Closed'
-          }"
         >
-          <span
-            style="color: #20c997"
-            class="material-icons"
-            *ngIf="
-              servey === selectedSurveys &&
-              servey.SURVEY_STATUS_EN === 'Published'
-            "
-          >
-            check_circle
-          </span>
-          <span
-            style="color: #20c997"
-            class="material-icons"
-            *ngIf="
-              servey.SURVEY_STATUS_EN === 'Published' &&
-              !(servey === selectedSurveys)
-            "
-          >
-            check
-          </span>
-          <mat-icon *ngIf="servey.SURVEY_STATUS_EN === 'Expired'"
-            >query_builder</mat-icon
-          >
-          <mat-icon *ngIf="servey.SURVEY_STATUS_EN === 'Closed'">lock</mat-icon>
-          <mat-card-content>{{ servey.SurveyNameEn }} </mat-card-content>
-          <mat-divider inset></mat-divider>
-          <mat-card-actions>
-            <button mat-button></button>
-          </mat-card-actions>
-          <mat-card-footer> </mat-card-footer>
-        </mat-card></div
+          <app-card
+            [servey]="servey"
+            [selectedSurveys]="selectedSurveys"
+          ></app-card>
+        </div></div
     ></mat-tab>
     <mat-tab label="Expired">
       <div *ngFor="let servey of Surveys" class="col-4">
-        <mat-card
-          [class.selected-expired]="servey === selectedSurveys"
-          (click)="onSelect(servey)"
-          class="example-card col-4"
-          style="text-align: center"
+        <div
+          class="container example-card col-3"
+          style="padding: 30px"
           *ngIf="servey.SURVEY_STATUS_EN === 'Expired'"
-          [ngClass]="{
-            Published: servey.SURVEY_STATUS_EN === 'Published',
-            Expired: servey.SURVEY_STATUS_EN === 'Expired',
-            Closed: servey.SURVEY_STATUS_EN === 'Closed'
-          }"
         >
-          <span
-            style="color: grey"
-            class="material-icons"
-            *ngIf="
-              servey === selectedSurveys &&
-              servey.SURVEY_STATUS_EN === 'Expired'
-            "
-          >
-            watch_later
-          </span>
-          <span
-            style="color: grey"
-            class="material-icons"
-            *ngIf="
-              servey.SURVEY_STATUS_EN === 'Expired' &&
-              !(servey === selectedSurveys)
-            "
-          >
-            schedule
-          </span>
-
-          <mat-card-content>{{ servey.SurveyNameEn }} </mat-card-content>
-          <mat-divider inset></mat-divider>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-          </mat-card-actions>
-          <mat-card-footer> </mat-card-footer>
-        </mat-card></div
+          <app-card [servey]="servey"></app-card>
+        </div></div
     ></mat-tab>
     <mat-tab label="Closed">
       <div *ngFor="let servey of Surveys" class="col-4">
-        <mat-card
-          [class.selected-closed]="servey === selectedSurveys"
-          (click)="onSelect(servey)"
-          class="example-card col-4"
-          style="text-align: center"
+        <div
+          class="container example-card col-3"
+          style="padding: 30px"
           *ngIf="servey.SURVEY_STATUS_EN === 'Closed'"
-          [ngClass]="{
-            Published: servey.SURVEY_STATUS_EN === 'Published',
-            Expired: servey.SURVEY_STATUS_EN === 'Expired',
-            Closed: servey.SURVEY_STATUS_EN === 'Closed'
-          }"
         >
-          <span
-            style="color: grey"
-            class="material-icons"
-            *ngIf="
-              servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Closed'
-            "
-          >
-            lock
-          </span>
-          <span
-            style="color: grey"
-            class="material-icons"
-            *ngIf="
-              servey.SURVEY_STATUS_EN === 'Closed' &&
-              !(servey === selectedSurveys)
-            "
-          >
-            lock_open
-          </span>
-          <mat-card-content>{{ servey.SurveyNameEn }} </mat-card-content>
-          <mat-divider inset></mat-divider>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-          </mat-card-actions>
-          <mat-card-footer> </mat-card-footer>
-        </mat-card></div
+          <app-card [servey]="servey"></app-card>
+        </div></div
     ></mat-tab>
     <mat-tab label="Al Serveys">
-      <div class="container" style="padding: 30px"></div>
-      <mat-card
-        [class.selected-closed]="
-          servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Closed'
-        "
-        [class.selected-published]="
-          servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Published'
-        "
-        [class.selected-expired]="
-          servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Expired'
-        "
-        (click)="onSelect(servey)"
-        class="example-card col-4"
-        style="text-align: center"
-        *ngFor="let servey of Surveys"
-        [ngClass]="{
-          Published: servey.SURVEY_STATUS_EN === 'Published',
-          Expired: servey.SURVEY_STATUS_EN === 'Expired',
-          Closed: servey.SURVEY_STATUS_EN === 'Closed'
-        }"
-      >
-        <span
-          style="color: grey"
-          class="material-icons"
-          *ngIf="
-            servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Closed'
-          "
-        >
-          lock
-        </span>
-        <span
-          style="color: grey"
-          class="material-icons"
-          *ngIf="
-            servey.SURVEY_STATUS_EN === 'Closed' &&
-            !(servey === selectedSurveys)
-          "
-        >
-          lock_open
-        </span>
-        <span
-          style="color: #20c997"
-          class="material-icons"
-          *ngIf="
-            servey === selectedSurveys &&
-            servey.SURVEY_STATUS_EN === 'Published'
-          "
-        >
-          check_circle
-        </span>
-        <span
-          style="color: #20c997"
-          class="material-icons"
-          *ngIf="
-            servey.SURVEY_STATUS_EN === 'Published' &&
-            !(servey === selectedSurveys)
-          "
-        >
-          check
-        </span>
-        <span
-          style="color: grey"
-          class="material-icons"
-          *ngIf="
-            servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Expired'
-          "
-        >
-          watch_later
-        </span>
-        <span
-          style="color: grey"
-          class="material-icons"
-          *ngIf="
-            servey.SURVEY_STATUS_EN === 'Expired' &&
-            !(servey === selectedSurveys)
-          "
-        >
-          schedule
-        </span>
-        <mat-card-content>{{ servey.SurveyNameEn }} </mat-card-content>
-        <mat-divider inset></mat-divider>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-        </mat-card-actions>
-        <mat-card-footer> </mat-card-footer>
-      </mat-card>
+      <div *ngFor="let servey of Surveys" class="col-4">
+        <div class="container" style="padding: 30px"></div>
+        <app-card [servey]="servey"></app-card>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </mat-card>

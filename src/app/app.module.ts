@@ -21,10 +21,18 @@ import {MatDividerModule} from '@angular/material/divider'
 import {MatButtonModule} from '@angular/material/button'
 import {HttpClientModule} from '@angular/common/http'
 import { CommonModule } from '@angular/common';
+import { NavigationComponent } from './navigation/navigation.component';
+import { TabsComponent } from './tabs/tabs.component';
+import { CardComponent } from './card/card.component';
+import {MatSelectModule} from '@angular/material/select'
+
 @NgModule({
 
   declarations: [
     AppComponent,
+    NavigationComponent,
+    TabsComponent,
+    CardComponent,
 
   ],
   imports: [
@@ -42,7 +50,10 @@ import { CommonModule } from '@angular/common';
     MatProgressBarModule,
     MatDividerModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+  
+
   ],
   providers: [
     // no need to place any providers due to the `providedIn` flag...

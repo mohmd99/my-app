@@ -29,13 +29,20 @@ mat-card-header i {
 .ClosedBorder {
   border: 2px solid grey;
 }
-
+.selected-closed {
+  border: 3px solid grey;
+  border-top: 5px solid gray;
+}
+.selected-published {
+  border: 3px solid #20c997;
+  border-top: 5px solid #20c997;
+}
+.selected-expired {
+  border: 3px solid grey;
+  border-top: 5px solid gray;
+}
 .material-icons {
   font-size: 50px;
   height: 50px;
   width: 50px;
-}
-button {
-  left: 85%;
-
 }

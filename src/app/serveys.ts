@@ -12,3 +12,4 @@ export interface Isurvey {
   SURVEY_STATUS_EN: string;
   SurveyPeriods: string;
   }
+ 
