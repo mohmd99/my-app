@@ -1,7 +1,7 @@
 import { Isurvey } from './../serveys';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TestService } from '../test.service';
-import { empty } from 'rxjs';
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -11,6 +11,7 @@ export class CardComponent implements OnInit {
   constructor(public TestService: TestService) {}
   ngOnInit(): void {
     this.x = JSON.parse(this.servey.SurveyPeriods);
+
   }
   x: any;
 

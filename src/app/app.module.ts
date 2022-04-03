@@ -31,15 +31,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { DataTableComponent } from './data-table/data-table.component';
 import { MatSortModule } from '@angular/material/sort';
+import { TableComponent } from './table/table.component';
+import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent,
     TabsComponent,
     CardComponent,
     DialogExampleComponent,
-    DataTableComponent,
+    TableComponent,
+
   ],
   entryComponents: [DialogExampleComponent],
   imports: [
@@ -67,6 +69,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatTabsModule,
     MatTableModule,
     MatSortModule,
+    MatRadioModule
   ],
   providers: [
     // no need to place any providers due to the `providedIn` flag...
