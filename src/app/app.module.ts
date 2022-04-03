@@ -11,30 +11,37 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 //import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 //import { MatListModule } from '@angular/material/list'
-import {MatTabsModule} from '@angular/material/tabs'
-import {MatCardModule} from '@angular/material/card'
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
 //import {BrowserAnimateModule} from '@angular/animations'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //BrowserAnimateModule
-import {MatProgressBarModule} from '@angular/material/progress-bar'
-import {MatDividerModule} from '@angular/material/divider'
-import {MatButtonModule} from '@angular/material/button'
-import {HttpClientModule} from '@angular/common/http'
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { NavigationComponent } from './navigation/navigation.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { CardComponent } from './card/card.component';
-import {MatSelectModule} from '@angular/material/select'
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DialogExampleComponent } from './dialog-example/dialog-example.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { DataTableComponent } from './data-table/data-table.component';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
-
   declarations: [
     AppComponent,
-    NavigationComponent,
     TabsComponent,
     CardComponent,
-
+    DialogExampleComponent,
+    DataTableComponent,
   ],
+  entryComponents: [DialogExampleComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -52,12 +59,18 @@ import {MatSelectModule} from '@angular/material/select'
     MatButtonModule,
     HttpClientModule,
     MatSelectModule,
-  
-
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonToggleModule,
+    MatPaginatorModule,
+    MatTabsModule,
+    MatTableModule,
+    MatSortModule,
   ],
   providers: [
     // no need to place any providers due to the `providedIn` flag...
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

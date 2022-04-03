@@ -1,45 +1,79 @@
-<mat-card>
-  <mat-tab-group animationDuration="0ms">
-    <button mat-raised-button color="primary" [disabled]="!selectedSurveys">
+<mat-card
+  ><ng-container *ngIf="select; then button; else disabled"></ng-container>
+  <ng-template #button>
+    <button mat-raised-button color="primary" (click)="openDialog()">
       Go To Dashboard
-    </button>
+    </button></ng-template
+  >
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle (click)="buttonTable()"
+      ><i class="fa-solid fa-list"></i
+    ></mat-button-toggle>
+    <mat-button-toggle (click)="buttonCard()"
+      ><i class="fa-solid fa-grip-vertical"></i
+    ></mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <ng-template #disabled>
+    <button mat-raised-button disabled>Go To Dashboard</button></ng-template
+  >
+  <mat-tab-group animationDuration="0ms">
     <mat-tab label="Published">
-      <div *ngFor="let servey of this.Surveys" class="col-4">
-        <div
-          class="container example-card col-3"
-          style="padding: 30px"
-          *ngIf="servey.SURVEY_STATUS_EN === 'Published'"
-        >
-          <app-card
-            [servey]="servey"
-            [selectedSurveys]="selectedSurveys"
-          ></app-card>
-        </div></div
-    ></mat-tab>
+      <div *ngIf="showCard">
+        <div *ngFor="let servey of this.Surveys">
+          <div *ngIf="servey.SURVEY_STATUS_EN === 'Published'" class="block">
+            <app-card [servey]="servey" (newevent)="done($event)"></app-card>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showtable">
+        <div>
+          <app-data-table [servey]="servey"></app-data-table>
+        </div>
+
+        <!-- <div *ngFor="let servey of this.Surveys">
+          <div *ngIf="servey.SURVEY_STATUS_EN === 'Published'">
+
+          </div>
+        </div> -->
+      </div>
+    </mat-tab>
     <mat-tab label="Expired">
-      <div *ngFor="let servey of Surveys" class="col-4">
-        <div
-          class="container example-card col-3"
-          style="padding: 30px"
-          *ngIf="servey.SURVEY_STATUS_EN === 'Expired'"
-        >
-          <app-card [servey]="servey"></app-card>
-        </div></div
-    ></mat-tab>
+      <div *ngIf="showCard">
+        <div *ngFor="let servey of this.Surveys">
+          <div *ngIf="servey.SURVEY_STATUS_EN === 'Expired'">
+            <app-card [servey]="servey" (newevent)="done($event)"></app-card>
+          </div>
+        </div>
+      </div>
+      <ng-template *ngIf="showtable">
+        <div *ngFor="let servey of this.Surveys">
+          <div *ngIf="servey.SURVEY_STATUS_EN === 'Expired'"></div>
+        </div>
+      </ng-template>
+    </mat-tab>
     <mat-tab label="Closed">
-      <div *ngFor="let servey of Surveys" class="col-4">
-        <div
-          class="container example-card col-3"
-          style="padding: 30px"
-          *ngIf="servey.SURVEY_STATUS_EN === 'Closed'"
-        >
-          <app-card [servey]="servey"></app-card>
-        </div></div
-    ></mat-tab>
+      <div *ngIf="showCard">
+        <div *ngFor="let servey of this.Surveys">
+          <div *ngIf="servey.SURVEY_STATUS_EN === 'Closed'">
+            <app-card [servey]="servey" (newevent)="done($event)"></app-card>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showtable">
+        <div *ngFor="let servey of this.Surveys">
+          <div *ngIf="servey.SURVEY_STATUS_EN === 'Closed'"></div>
+        </div>
+      </div>
+    </mat-tab>
     <mat-tab label="Al Serveys">
-      <div *ngFor="let servey of Surveys" class="col-4">
-        <div class="container" style="padding: 30px"></div>
-        <app-card [servey]="servey"></app-card>
+      <div *ngIf="showCard">
+        <div *ngFor="let servey of this.Surveys">
+          <app-card [servey]="servey" (newevent)="done($event)"></app-card>
+        </div>
+      </div>
+      <div *ngIf="showtable">
+        <div *ngFor="let servey of this.Surveys"></div>
       </div>
     </mat-tab>
   </mat-tab-group>

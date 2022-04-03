@@ -1,20 +1,25 @@
-<div *ngIf="selectedSurveys">
-  {{ selectedSurveys }}
-  {{ selectedSurveys.SurveyNameEn }}
-</div>
 <mat-card
-  [class.selected-closed]="
-    servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Closed'
-  "
-  [class.selected-published]="
-    servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Published'
-  "
-  [class.selected-expired]="
-    servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Expired'
-  "
   (click)="onSelect(servey)"
-  class="example-card col-4"
+  class="example-card"
   style="text-align: center"
+  [ngClass]="
+    servey.SURVEY_STATUS_EN === 'Published' &&
+    TestService.currentSelectedSurvey == servey?.TEMPLATE_ID
+      ? 'selected-published'
+      : 'Published'
+  "
+  [ngClass]="
+    servey.SURVEY_STATUS_EN === 'Expired' &&
+    TestService.currentSelectedSurvey == servey?.TEMPLATE_ID
+      ? 'selected-expired'
+      : 'Expired'
+  "
+  [ngClass]="
+    TestService.currentSelectedSurvey == servey?.TEMPLATE_ID &&
+    servey.SURVEY_STATUS_EN === 'Closed'
+      ? 'selected-closed'
+      : 'Closed'
+  "
   [ngClass]="{
     Published: servey.SURVEY_STATUS_EN === 'Published',
     Expired: servey.SURVEY_STATUS_EN === 'Expired',
@@ -24,7 +29,10 @@
   <span
     style="color: grey"
     class="material-icons"
-    *ngIf="servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Closed'"
+    *ngIf="
+      TestService.currentSelectedSurvey == servey?.TEMPLATE_ID &&
+      servey.SURVEY_STATUS_EN === 'Closed'
+    "
   >
     lock
   </span>
@@ -32,16 +40,19 @@
     style="color: grey"
     class="material-icons"
     *ngIf="
-      servey.SURVEY_STATUS_EN === 'Closed' && !(servey === selectedSurveys)
+      servey.SURVEY_STATUS_EN === 'Closed' &&
+      !(TestService.currentSelectedSurvey == servey?.TEMPLATE_ID)
     "
   >
     lock_open
   </span>
+
   <span
     style="color: #20c997"
     class="material-icons"
     *ngIf="
-      servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Published'
+      TestService.currentSelectedSurvey == servey?.TEMPLATE_ID &&
+      servey.SURVEY_STATUS_EN === 'Published'
     "
   >
     check_circle
@@ -50,7 +61,8 @@
     style="color: #20c997"
     class="material-icons"
     *ngIf="
-      servey.SURVEY_STATUS_EN === 'Published' && !(servey === selectedSurveys)
+      servey.SURVEY_STATUS_EN === 'Published' &&
+      !(TestService.currentSelectedSurvey == servey?.TEMPLATE_ID)
     "
   >
     check
@@ -58,7 +70,10 @@
   <span
     style="color: grey"
     class="material-icons"
-    *ngIf="servey === selectedSurveys && servey.SURVEY_STATUS_EN === 'Expired'"
+    *ngIf="
+      TestService.currentSelectedSurvey == servey?.TEMPLATE_ID &&
+      servey.SURVEY_STATUS_EN === 'Expired'
+    "
   >
     watch_later
   </span>
@@ -66,7 +81,8 @@
     style="color: grey"
     class="material-icons"
     *ngIf="
-      servey.SURVEY_STATUS_EN === 'Expired' && !(servey === selectedSurveys)
+      servey.SURVEY_STATUS_EN === 'Expired' &&
+      !(TestService.currentSelectedSurvey == servey?.TEMPLATE_ID)
     "
     >alarm
   </span>
@@ -74,13 +90,24 @@
   <mat-card-content> {{ servey.SurveyNameEn }} </mat-card-content>
   <mat-divider inset></mat-divider>
   <mat-card-actions>
-    <mat-select placeholder="Select Period" value="1">
-      <mat-option value="">Select Period</mat-option>
-      <mat-option *ngFor="let i of x" value="1">
+    <ng-container *ngIf="this.x.length >= 2; then array; else string">
+    </ng-container>
+
+    <ng-template #array>
+      <mat-select placeholder="Select Period" value="">
+        <mat-option *ngFor="let i of x" value="1">
+          {{ i["START_DATE"] | date: "shortDate" }} -
+          {{ i["END_DATE"] | date: "shortDate" }}
+        </mat-option>
+      </mat-select>
+    </ng-template>
+
+    <ng-template #string>
+      <ng-container *ngFor="let i of x">
         {{ i["START_DATE"] | date: "shortDate" }} -
         {{ i["END_DATE"] | date: "shortDate" }}
-      </mat-option>
-    </mat-select>
+      </ng-container>
+    </ng-template>
   </mat-card-actions>
   <mat-card-footer> </mat-card-footer>
 </mat-card>

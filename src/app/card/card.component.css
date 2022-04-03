@@ -1,10 +1,5 @@
-mat-card .example-card {
-  height: 100%;
-  margin: 2px;
-}
 .example-card {
   width: 350px;
-  display: inline-block;
   max-block-size: 200px;
   margin: 20px;
 }
@@ -32,6 +27,18 @@ mat-card-header i {
 .selected-closed {
   border: 3px solid grey;
   border-top: 5px solid gray;
+}
+.Published:hover {
+  border: 3px solid #20c997;
+  border-top: 5px solid #20c997;
+}
+.Expired:hover {
+  border: 3px solid grey;
+  border-top: 5px solid grey;
+}
+.Closed:hover {
+  border: 3px solid grey;
+  border-top: 5px solid grey;
 }
 .selected-published {
   border: 3px solid #20c997;

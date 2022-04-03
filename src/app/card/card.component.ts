@@ -1,32 +1,30 @@
-import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
-
-import { Isurvey } from '../serveys';
+import { Isurvey } from './../serveys';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TestService } from '../test.service';
+import { empty } from 'rxjs';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.css'],
 })
 export class CardComponent implements OnInit {
-
-  constructor(public TestService:TestService) { }
-
-
-
-
-
+  constructor(public TestService: TestService) {}
   ngOnInit(): void {
-this.x=JSON.parse(this.servey.SurveyPeriods);
-console.log(this.selectedSurveys)
+    this.x = JSON.parse(this.servey.SurveyPeriods);
   }
-x:any
+  x: any;
 
-@Input() servey: any;
-@Input() selectedSurveys: any;
-onSelect(servey: Isurvey): void {
-  this.selectedSurveys = servey;
+  @Input() servey: any;
+
+  @Output() newevent = new EventEmitter();
+
+  selectedSurveys?: Isurvey;
+
+  onSelect(servey: Isurvey): void {
+    if (this.selectedSurveys != servey) {
+      this.selectedSurveys = servey;
+      this.newevent.emit(this.selectedSurveys);
+    } else {
+    }
+  }
 }
-
-}
-
-

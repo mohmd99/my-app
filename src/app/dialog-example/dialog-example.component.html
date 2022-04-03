@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>SURVEY:</h1>
+<div mat-dialog-content>
+  <p>Data to send back</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Data</mat-label>
+    <input matInput [(ngModel)]="data.SurveyNameEn" required minlength="4" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    (click)="onNoClick()"
+    [mat-dialog-close]="this.data.SurveyNameEn"
+  >
+    No Thanks
+  </button>
+  <button mat-button [mat-dialog-close]="data.SurveyNameEn">Ok</button>
+</div>
