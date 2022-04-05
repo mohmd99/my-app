@@ -28,8 +28,14 @@ mat-card-header i {
   width: 50px;
 }
 button {
-  left: 70%;
+  margin: 10px;
 }
 mat-button-toggle-group {
-  left: 40%;
+  margin: 10px;
+}
+.lists{
+align-items: center;
+align-content: center;
+display: block;
+
 }

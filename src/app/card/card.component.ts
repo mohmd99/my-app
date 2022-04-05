@@ -10,9 +10,11 @@ import { TestService } from '../test.service';
 export class CardComponent implements OnInit {
   constructor(public TestService: TestService) {}
   ngOnInit(): void {
-    this.x = JSON.parse(this.servey.SurveyPeriods);
+    if (typeof this.servey.SurveyPeriods == 'string') {
+    this.servey.SurveyPeriods = JSON.parse(this.servey.SurveyPeriods);
 
   }
+}
   x: any;
 
   @Input() servey: any;

@@ -90,22 +90,22 @@
   <mat-card-content> {{ servey.SurveyNameEn }} </mat-card-content>
   <mat-divider inset></mat-divider>
   <mat-card-actions>
-    <ng-container *ngIf="this.x.length >= 2; then array; else string">
+    <ng-container *ngIf="this.servey.SurveyPeriods?.length >= 2; then array; else string">
     </ng-container>
 
     <ng-template #array>
       <mat-select placeholder="Select Period" value="">
-        <mat-option *ngFor="let i of x" value="1">
-          {{ i["START_DATE"] | date: "shortDate" }} -
-          {{ i["END_DATE"] | date: "shortDate" }}
+        <mat-option *ngFor="let i of servey.SurveyPeriods" value="1">
+          {{ i["START_DATE"] | date: "dd/MM/yyyy" }} -
+          {{ i["END_DATE"] | date: "dd/MM/yyyy" }}
         </mat-option>
       </mat-select>
     </ng-template>
 
     <ng-template #string>
-      <ng-container *ngFor="let i of x">
-        {{ i["START_DATE"] | date: "shortDate" }} -
-        {{ i["END_DATE"] | date: "shortDate" }}
+      <ng-container *ngFor="let i of servey.SurveyPeriods">
+        {{ i["START_DATE"] | date: "dd/MM/yyyy" }} -
+        {{ i["END_DATE"] | date: "dd/MM/yyyy" }}
       </ng-container>
     </ng-template>
   </mat-card-actions>

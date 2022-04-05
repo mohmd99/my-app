@@ -34,6 +34,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { TableComponent } from './table/table.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { CpipePipe } from './cpipe.pipe';
+import { AvatarModule } from 'ngx-avatar';
+import { NavComponent } from './nav/nav.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,10 +46,12 @@ import { MatRadioModule } from '@angular/material/radio';
     CardComponent,
     DialogExampleComponent,
     TableComponent,
-
+    CpipePipe,
+    NavComponent
   ],
   entryComponents: [DialogExampleComponent],
   imports: [
+    Ng2SearchPipeModule,
     CommonModule,
     BrowserModule,
     MatSliderModule,
@@ -69,7 +76,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatTabsModule,
     MatTableModule,
     MatSortModule,
-    MatRadioModule
+    MatRadioModule,
+    AvatarModule
   ],
   providers: [
     // no need to place any providers due to the `providedIn` flag...

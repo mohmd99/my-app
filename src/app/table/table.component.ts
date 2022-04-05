@@ -1,7 +1,14 @@
 import { DataSource } from '@angular/cdk/collections';
 import { TestService } from './../test.service';
 import { Isurvey } from './../serveys';
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -21,6 +28,7 @@ export class TableComponent implements AfterViewInit {
     'SurveyNameEn',
     'START_DATE',
     'END_DATE',
+    'Period',
   ];
   dataSource!: MatTableDataSource<Isurvey>;
 
@@ -30,16 +38,26 @@ export class TableComponent implements AfterViewInit {
   constructor(TestService: TestService) {}
   @Input() servey: any;
   ngOnInit(): void {
+    console.log('init');
+    if (this.servey && typeof this.servey[0]?.SurveyPeriods == 'string') {
+      this.servey.map(
+        (x: any) => (x.SurveyPeriods = JSON.parse(x.SurveyPeriods))
+      );
+      console.log(this.servey);
+      // this.dataSource = new MatTableDataSource(this.servey);
+    }
     this.dataSource = new MatTableDataSource(this.servey);
-    let c = this.servey.map((x: any) => JSON.parse(x.SurveyPeriods));
-    console.log(c[0][0].START_DATE);
+
+    //
+    // );
   }
+  selectedValue: any;
   c: any;
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
+  i = 0;
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -48,8 +66,24 @@ export class TableComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
+  @Output() newevent = new EventEmitter();
 
+  selectedSurveys?: Isurvey;
+
+  onSelect(servey: Isurvey): void {
+    if (this.selectedSurveys != servey) {
+      this.selectedSurveys = servey;
+      console.log(this.selectedSurveys);
+      this.newevent.emit(this.selectedSurveys);
+    }
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    console.log('DESTROYED...');
+  }
+}
 /** Builds and returns a new User. */
 
 /**  Copyright 2022 Google LLC. All Rights Reserved.
