@@ -1,92 +1,12 @@
 <app-nav [list]="list"></app-nav>
-<mat-card>
-  <div class="lists">
-    <ng-container *ngIf="select; then button; else disabled"></ng-container>
-    <ng-template #button>
-      <button mat-raised-button color="primary" (click)="openDialog()">
-        Go To Dashboard
-      </button></ng-template
-    >
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle (click)="buttonTable()"
-        ><i class="fa-solid fa-list"></i
-      ></mat-button-toggle>
-      <mat-button-toggle (click)="buttonCard()"
-        ><i class="fa-solid fa-grip-vertical"></i
-      ></mat-button-toggle>
-    </mat-button-toggle-group>
-    <mat-form-field appearance="standard">
-      <mat-label>Filter</mat-label>
-      <input
-        matInput
-        [(ngModel)]="searchText"
-        (keyup)="child!.applyFilter($event)"
-        placeholder="Ex. Mia"
-      />
-    </mat-form-field>
-    <ng-template #disabled>
-      <button mat-raised-button disabled>Go To Dashboard</button></ng-template
-    >
+<div class="col-12">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-content collapse show">
+        <div class="card-body">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
   </div>
-  <mat-tab-group
-    animationDuration="0ms"
-    (selectedTabChange)="tabChanged($event)"
-  >
-    <mat-tab label="Al Serveys">
-      <div *ngIf="showCard">
-        <div *ngFor="let servey of Surveys | filter: searchText">
-          <app-card [servey]="servey" (newevent)="done($event)"></app-card>
-        </div>
-      </div>
-      <div *ngIf="showtable">
-        <app-table [servey]="Surveys" (newevent)="done($event)"></app-table>
-      </div>
-    </mat-tab>
-    <mat-tab label="Published">
-      <div *ngIf="showCard">
-        <div *ngFor="let servey of filterArray | filter: searchText">
-          <div class="block">
-            <app-card [servey]="servey" (newevent)="done($event)"></app-card>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="showtable">
-        <app-table [servey]="filterArray" (newevent)="done($event)"></app-table>
-      </div>
-    </mat-tab>
-    <mat-tab label="Expired">
-      <div *ngIf="showCard">
-        <div *ngFor="let servey of filterArray | filter: searchText">
-          <div>
-            <app-card [servey]="servey" (newevent)="done($event)"></app-card>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="showtable">
-        <div>
-          <app-table
-            [servey]="filterArray"
-            (newevent)="done($event)"
-          ></app-table>
-        </div>
-      </div>
-    </mat-tab>
-    <mat-tab label="Closed">
-      <div *ngIf="showCard">
-        <div *ngFor="let servey of filterArray | filter: searchText">
-          <div *ngIf="servey.SURVEY_STATUS_EN === 'Closed'">
-            <app-card [servey]="servey" (newevent)="done($event)"></app-card>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="showtable">
-        <div>
-          <app-table
-            [servey]="filterArray"
-            (newevent)="done($event)"
-          ></app-table>
-        </div>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
-</mat-card>
+</div>

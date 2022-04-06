@@ -1,4 +1,4 @@
-import { Isurvey } from './../serveys';
+import { Isurvey } from '../../serveys';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldControl } from '@angular/material/form-field';

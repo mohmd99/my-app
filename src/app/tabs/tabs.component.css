@@ -1,0 +1,41 @@
+[class^="fa-"],
+[class*=" fa-"] {
+  display: inline-block;
+  width: 100%;
+}
+mat-card-header i {
+  text-align: center;
+}
+.block {
+  display: inline;
+}
+.Published {
+  border-top: 5px solid #20c997;
+}
+.Expired {
+  border-top: 5px solid grey;
+}
+.Closed {
+  border-top: 5px solid grey;
+}
+.ClosedBorder {
+  border: 2px solid grey;
+}
+
+.material-icons {
+  font-size: 50px;
+  height: 50px;
+  width: 50px;
+}
+button {
+  margin: 10px;
+}
+mat-button-toggle-group {
+  margin: 10px;
+}
+.lists{
+align-items: center;
+align-content: center;
+display: block;
+
+}

@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -26,19 +27,19 @@ import { CardComponent } from './card/card.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { DialogExampleComponent } from './dialog-example/dialog-example.component';
+import { DialogExampleComponent } from './tabs/dialog-example/dialog-example.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-import { TableComponent } from './table/table.component';
+import { TableComponent } from './tabs/table/table.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { CpipePipe } from './cpipe.pipe';
 import { AvatarModule } from 'ngx-avatar';
 import { NavComponent } from './nav/nav.component';
-
+import { UserComponent } from './user/user.component';
+import { AppRoutingModule } from './app-routing.module'; // CLI imports AppRoutingModule
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,8 +47,8 @@ import { NavComponent } from './nav/nav.component';
     CardComponent,
     DialogExampleComponent,
     TableComponent,
-    CpipePipe,
-    NavComponent
+    NavComponent,
+    UserComponent
   ],
   entryComponents: [DialogExampleComponent],
   imports: [
@@ -77,8 +78,10 @@ import { NavComponent } from './nav/nav.component';
     MatTableModule,
     MatSortModule,
     MatRadioModule,
-    AvatarModule
+    AvatarModule,
+    AppRoutingModule
   ],
+  exports:[RouterModule],
   providers: [
     // no need to place any providers due to the `providedIn` flag...
   ],

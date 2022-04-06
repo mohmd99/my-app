@@ -1,1 +1,44 @@
-<p>tabs works!</p>
+<mat-card>
+  <div class="lists">
+    <ng-container *ngIf="select; then button; else disabled"></ng-container>
+    <ng-template #button>
+      <button mat-raised-button color="primary" (click)="openDialog()">
+        Go To Dashboard
+      </button></ng-template
+    >
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle (click)="buttonTable()"
+        ><i class="fa-solid fa-list"></i
+      ></mat-button-toggle>
+      <mat-button-toggle (click)="buttonCard()"
+        ><i class="fa-solid fa-grip-vertical"></i
+      ></mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        (keyup)="child?.applyFilter($event)"
+        placeholder="Search"
+      />
+    </mat-form-field>
+    <ng-template #disabled>
+      <button mat-raised-button disabled>Go To Dashboard</button></ng-template
+    >
+  </div>
+  <mat-tab-group
+    animationDuration="0ms"
+    (selectedTabChange)="tabChanged($event)"
+  >
+    <mat-tab *ngFor="let tab of tabs | keyvalue" [label]="tab.value.title">
+      <div *ngIf="showCard">
+        <div *ngFor="let servey of filterArray | filter: searchText">
+          <app-card [servey]="servey" (newevent)="done($event)"></app-card>
+        </div>
+      </div>
+      <div *ngIf="showtable">
+        <app-table [servey]="filterArray" (newevent)="done($event)"></app-table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
