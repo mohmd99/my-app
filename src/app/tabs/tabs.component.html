@@ -32,7 +32,10 @@
   >
     <mat-tab *ngFor="let tab of tabs | keyvalue" [label]="tab.value.title">
       <div *ngIf="showCard">
-        <div *ngFor="let servey of filterArray | filter: searchText">
+        <div
+          *ngFor="let servey of filterArray | filter: searchText"
+          style="display:inline-block"
+        >
           <app-card [servey]="servey" (newevent)="done($event)"></app-card>
         </div>
       </div>

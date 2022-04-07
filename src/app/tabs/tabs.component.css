@@ -7,7 +7,7 @@ mat-card-header i {
   text-align: center;
 }
 .block {
-  display: inline;
+  display: block;
 }
 .Published {
   border-top: 5px solid #20c997;
@@ -33,9 +33,5 @@ button {
 mat-button-toggle-group {
   margin: 10px;
 }
-.lists{
-align-items: center;
-align-content: center;
-display: block;
 
-}
+

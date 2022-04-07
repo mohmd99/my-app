@@ -39,7 +39,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AvatarModule } from 'ngx-avatar';
 import { NavComponent } from './nav/nav.component';
 import { UserComponent } from './user/user.component';
-import { AppRoutingModule } from './app-routing.module'; // CLI imports AppRoutingModule
+import { AppRoutingModule } from './app-routing.module';
+import { ValidComponent } from './valid/valid.component'; // CLI imports AppRoutingModule
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,8 @@ import { AppRoutingModule } from './app-routing.module'; // CLI imports AppRouti
     DialogExampleComponent,
     TableComponent,
     NavComponent,
-    UserComponent
+    UserComponent,
+    ValidComponent
   ],
   entryComponents: [DialogExampleComponent],
   imports: [
@@ -79,7 +82,8 @@ import { AppRoutingModule } from './app-routing.module'; // CLI imports AppRouti
     MatSortModule,
     MatRadioModule,
     AvatarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   exports:[RouterModule],
   providers: [

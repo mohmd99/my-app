@@ -1,2 +1,52 @@
-
-<button mat-raised-button color="primary" routerLink="/">Back</button>
+<mat-card>
+  <mat-card-title>Change Password</mat-card-title>
+  <mat-card-content>
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="hides ? 'password' : 'text'"
+          [(ngModel)]="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hides = !hides"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hides"
+        >
+          <mat-icon>{{ hides ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <span *ngIf="this.password != null || this.password?.length >= 1">
+        <li *ngIf="length()">Minimum length (8)</li>
+        <li *ngIf="Upper()">Must include at least 1 upperCase letter</li>
+        <li *ngIf="Lower()">Must include at least 1 lowerCase letter</li>
+        <li *ngIf="nums()">Must include at least 1 number</li>
+        <li *ngIf="special()">Must include at least 1 special character</li>
+      </span>
+    </div>
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Confirm your password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          [(ngModel)]="cpassword"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" routerLink="/">Back</button>
+    <button mat-raised-button color="primary" routerLink="/">Submit</button>
+  </mat-card-content>
+</mat-card>

@@ -5,7 +5,16 @@
       alt=""
       width="200px"
   /></a>
+  <a routerLink="valid" style="color: grey"
+    ><button mat-button>remove Valid</button></a
+  >
+  <a routerLink="user" style="color: grey"><button mat-button>user</button></a>
   <div>
-    <ngx-avatar name="{{ list.name }}" routerLink="user" value="VS"></ngx-avatar> {{ list.name }}
+    <ngx-avatar
+      name="{{ list.name }}"
+      routerLink="user"
+      value="VS"
+    ></ngx-avatar>
+    {{ list.name }}
   </div>
 </nav>
