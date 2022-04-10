@@ -3,3 +3,32 @@ div{
   align-items: center;
   right: 20px;
 }
+
+  .circle {
+    border-radius   : 50%;
+    width           : 60px;
+    height          : 60px;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+
+
+  }
+    .initials {
+      color: white;
+
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      text-decoration: none;
+      height: 70px;
+      width: 70px;
+      font-size: 30px;
+    }
+    .inline{
+      display: inline-block;
+      background-color: #20c294;
+      margin: 10px;
+      border-radius: 50%;
+    }
+

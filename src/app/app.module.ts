@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { MatSliderModule } from '@angular/material/slider';
 //import {MatButtonModule} from '@angular/material/button';
 //import {MatTableModule} from '@angular/material/table';
-//import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 //import { MatSidenavModule } from '@angular/material/sidenav';
@@ -42,6 +42,8 @@ import { UserComponent } from './user/user.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ValidComponent } from './valid/valid.component'; // CLI imports AppRoutingModule
 import { ReactiveFormsModule } from '@angular/forms';
+import { PermissionComponent } from './permission/permission.component';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TableComponent,
     NavComponent,
     UserComponent,
-    ValidComponent
+    ValidComponent,
+    PermissionComponent,
   ],
   entryComponents: [DialogExampleComponent],
   imports: [
@@ -83,9 +86,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     AvatarModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatListModule,
+    MatCheckboxModule,
   ],
-  exports:[RouterModule],
+  exports: [RouterModule],
   providers: [
     // no need to place any providers due to the `providedIn` flag...
   ],

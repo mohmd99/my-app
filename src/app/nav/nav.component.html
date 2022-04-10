@@ -8,13 +8,17 @@
   <a routerLink="valid" style="color: grey"
     ><button mat-button>remove Valid</button></a
   >
+  <a routerLink="permission" style="color: grey"
+  ><button mat-button>permission</button></a
+>
   <a routerLink="user" style="color: grey"><button mat-button>user</button></a>
-  <div>
-    <ngx-avatar
-      name="{{ list.name }}"
-      routerLink="user"
-      value="VS"
-    ></ngx-avatar>
-    {{ list.name }}
+  <div class="inline">
+    <div *ngIf="showInitials" class="initials">
+      {{ initials }}
   </div>
+
+
+  </div>
+
+
 </nav>

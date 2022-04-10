@@ -1,4 +1,10 @@
-<app-nav [list]="list"></app-nav>
+<div *ngFor="let user of list">
+  <app-nav [name]="user.name"></app-nav>
+  {{ user.name }}
+</div>
+
+<br />
+<br />
 <div class="col-12">
   <div class="card">
     <div class="card-header">
