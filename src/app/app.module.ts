@@ -44,6 +44,7 @@ import { ValidComponent } from './valid/valid.component'; // CLI imports AppRout
 import { ReactiveFormsModule } from '@angular/forms';
 import { PermissionComponent } from './permission/permission.component';
 import { MatListModule } from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav'
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,6 +90,7 @@ import { MatListModule } from '@angular/material/list';
     ReactiveFormsModule,
     MatListModule,
     MatCheckboxModule,
+    MatSidenavModule
   ],
   exports: [RouterModule],
   providers: [

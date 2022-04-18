@@ -1,6 +1,7 @@
+import { Ipermission } from './../permission';
 import { TestService } from './../test.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-permission',
@@ -10,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class PermissionComponent implements OnInit {
   @Input() permission: any;
   permissionForm: FormGroup;
+
   constructor(public TestService: TestService, private fb: FormBuilder) {}
   validationMessages = {
     fullName: {
@@ -21,47 +23,57 @@ export class PermissionComponent implements OnInit {
   formErrors = {
     fullName: '',
   };
-  logValidation(group: FormGroup = this.permissionForm) {
-    Object.keys(group.controls).forEach((key: string) => {
-      const absCtrl = group.get(key);
-      if (absCtrl instanceof FormGroup) {
-        this.logValidation(absCtrl);
-      } else {
-        this.formErrors[key] = '';
-        if (absCtrl && !absCtrl.valid && (absCtrl.touched || absCtrl.dirty)) {
-          const messages = this.validationMessages[key];
-          for (const errorkey in absCtrl.errors) {
-            if (errorkey) {
-              this.formErrors[key] += messages[errorkey] + ' ';
-            }
-          }
-        }
+  // logValidation(group: FormGroup = this.permissionForm) {
+  //   Object.keys(group.controls).forEach((key: string) => {
+  //     const absCtrl = group.get(key);
+  //     if (absCtrl instanceof FormGroup) {
+  //       this.logValidation(absCtrl);
+  //     } else {
+  //       this.formErrors[key] = '';
+  //       if (absCtrl && !absCtrl.valid && (absCtrl.touched || absCtrl.dirty)) {
+  //         const messages = this.validationMessages[key];
+  //         for (const errorkey in absCtrl.errors) {
+  //           if (errorkey) {
+  //             this.formErrors[key] += messages[errorkey] + ' ';
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
+  name: any;
+  checkbox: FormGroup;
+  myForm: FormGroup;
+  x: any;
+  get f() {
+    return this.myForm.controls;
+  }
+  get t() {
+    return this.f['per'] as FormArray;
+  }
+  get ticketFormGroups() {
+    return this.t.controls as FormGroup[];
+  }
+  ngOnInit(): void {
+    this.myForm = this.fb.group({
+      per: new FormArray([]),
+    });
+    this.TestService.getPermission().subscribe((data) => {
+      this.permission = data;
+      for (const per of this.permission) {
+          this.t.push(
+            this.fb.group({
+
+            })
+          );
+
+
+
       }
     });
   }
-  name: any;
-  contactPermission: any;
-  ngOnInit(): void {
-    this.TestService.getPermission().subscribe((data) => {
-      this.permission = data;
-    });
-    this.permissionForm = this.fb.group({
-      contactPermission: ['3'],
-      fullName: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(10),
-        ],
-      ],
-    });
-    this.permissionForm.valueChanges!.subscribe((data) => {
-      this.logValidation(this.permissionForm);
-    });
-  }
+
   onSubmit(): void {
-    console.log(this.permissionForm);
-    console.log(this.contactPermission);
+    console.log(this.myForm);
   }
 }

@@ -1,38 +1,40 @@
-<form
-  [formGroup]="permissionForm"
-  (ngSubmit)="onSubmit()"
-  class="form-horizontal"
->
-  <div class="form-group" [ngClass]="{ 'has-error': formErrors.fullName }">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+  <div class="form-group">
     <label for="fullName" class="col-sm-2 control-label">Full Name</label>
     <div class="col-sm-8">
       <input
         type="text"
         id="fullName"
-        formControlName="fullName"
         class="form-control"
-        (blur)="logValidation()"
-      />
+      /><!-- (blur)="logValidation()"-->
       <span class="invalid" *ngIf="formErrors.fullName">
         {{ formErrors.fullName }}
       </span>
     </div>
   </div>
+  <div>
+    <div *ngFor="let per of permission; let i = index">
+      {{ per.pageDescEn }}
 
-  <div *ngFor="let per of permission">
-    <div for="">{{ per["pageDescEn"] }}</div>
 
-    <mat-radio-group>
-      <mat-radio-button value="1">Read-Write</mat-radio-button>
-      <mat-radio-button value="2">Read Only</mat-radio-button>
-      <mat-radio-button value="3">none</mat-radio-button>
-    </mat-radio-group>
-    <div *ngFor="let x of per.pageFunctions">
-      <mat-checkbox *ngIf="contactPermission != 1">{{
-        x.pageFuncDescEn
-      }}</mat-checkbox>
+        <div class="form-row">
+          <mat-radio-group formControlName="radio">
+            <mat-radio-button value="Read-Write">Read-Write</mat-radio-button>
+            <mat-radio-button value="Read">Read Only</mat-radio-button>
+            <mat-radio-button value="none">none</mat-radio-button>
+          </mat-radio-group>
+          <div
+            *ngFor="let x of per.pageFunctions; let i = index"
+
+          >
+            <mat-checkbox >{{
+              x.pageFuncDescEn
+            }}</mat-checkbox>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
+ 
   <button mat-raised-button type="submit" color="primary">Submit</button>
+  <div *ngIf="myForm">{{ myForm.value | json }}</div>
 </form>
